@@ -1,0 +1,1 @@
+# LinuxRescue_SistemasOperativos_G6
