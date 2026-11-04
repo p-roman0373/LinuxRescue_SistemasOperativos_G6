@@ -30,7 +30,10 @@ Un videojuego web que convierte el aprendizaje de Linux en una aventura con reto
 
 **Linux Rescue** es un videojuego web 2D en estilo pixel art. El jugador elige un técnico (niño o niña) que recorre un pasillo lleno de computadores dañados. En cada uno aparece una falla y debe repararla con comandos de Linux en una terminal simulada.
 
-![Personajes de Linux Rescue](img/Personajes_Linux_Rescue.png)
+<p align="center">
+  <img src="img/Personajes_Linux_Rescue.png" width="600" alt="Personajes de Linux Rescue">
+</p>
+
 
 ### Objetivo general
 Desarrollar un videojuego web que enseñe a resolver problemas básicos de un computador usando comandos de Linux.
