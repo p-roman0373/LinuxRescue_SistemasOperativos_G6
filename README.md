@@ -34,6 +34,10 @@ Un videojuego web que convierte el aprendizaje de Linux en una aventura con reto
   <img src="img/Personajes_Linux_Rescue.png" width="600" alt="Personajes de Linux Rescue">
 </p>
 
+<p align="center">
+  <img src="img/Interfaz_Linux_Rescue.png" width="600" alt="Interfaz de Linux Rescue">
+</p>
+
 
 ### Objetivo general
 Desarrollar un videojuego web que enseñe a resolver problemas básicos de un computador usando comandos de Linux.
