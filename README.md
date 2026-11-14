@@ -144,7 +144,14 @@ python tests/e2e_playwright.py               # juega el juego completo y genera 
 
 ## 📸 Evidencias del funcionamiento
 
-> Las capturas se generaron automáticamente con la prueba de extremo a extremo (`tests/e2e_playwright.py`). Debajo hay espacios para agregar capturas propias del equipo.
+> Las capturas se generaron automáticamente con la prueba de extremo a extremo (`tests/e2e_playwright.py`).
+
+
+
+
+
+
+
 
 ### Inicio y pasillo
 | Inicio y selección de personaje | Pasillo de computadores |
