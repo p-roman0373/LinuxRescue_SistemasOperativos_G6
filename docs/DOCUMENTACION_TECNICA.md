@@ -19,6 +19,7 @@ La solución implementa los cinco componentes definidos en la Fase I:
 | Motor o lógica del juego | Flujo de partida, vidas, pistas, puntaje y medallas | `js/app.js` |
 | Interfaz web | Pantallas, terminal simulada, arrastrar y soltar, panel de explicación | `index.html`, `js/app.js` |
 | Recursos gráficos | Pixel art en SVG generado por código, monitores y temas en CSS | `js/app.js`, `css/*.css` |
+| Sonido | Música y efectos 8 bits sintetizados con Web Audio API | `js/audio.js` |
 
 ## 2. Arquitectura
 
@@ -266,6 +267,15 @@ Tiene cuatro estados, cada uno con su propio color de borde:
 ### 6.4 Pixel art
 
 Los personajes se definen como matrices de caracteres con una paleta de colores y se convierten a `<svg>` con un `<rect>` por píxel (`shape-rendering: crispEdges`). Los íconos de los computadores se dibujan solo con CSS. No hay archivos de imagen, lo que cumple RNF-07 (carga mínima).
+
+## 6.5 Sonido y música 8 bits (`js/audio.js`)
+
+El audio se **sintetiza en tiempo real** con la Web Audio API usando osciladores de onda cuadrada, triangular y diente de sierra, como el chip de sonido de las consolas de los 80. No hay archivos de audio que descargar.
+
+- **Efectos:** clic, recoger pieza, tecleo, pasos del avatar, acierto (arpegio ascendente), error (zumbido descendente), "casi", pista, alarma de comando peligroso, nivel completado, medalla, sin vidas y arranque de hardware en la transición.
+- **Música:** secuenciador de 32 pasos con melodía y bajo, y una canción por pantalla: menú, Bronce (misteriosa, en La menor), Plata (tranquila) y Oro (rápida, 148 bpm, con percusión). Las notas se programan por adelantado con `AudioContext.currentTime` para que no haya desfases.
+- **Controles:** botones 🔊 (efectos) y 🎵 (música) fijos en la esquina; la preferencia se guarda en `localStorage`.
+- Los navegadores bloquean el sonido hasta que el usuario interactúa, así que el audio arranca con el primer clic o tecla. Si el navegador no soporta Web Audio, el juego sigue funcionando en silencio.
 
 ## 7. Relación con Sistemas Operativos
 

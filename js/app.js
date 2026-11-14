@@ -44,6 +44,10 @@
     }
     return a;
   }
+  /* Sonido: si audio.js no cargó, el juego funciona en silencio */
+  function sfx(name) { if (window.Sound) window.Sound.play(name); }
+  function bgm(name) { if (window.Sound) window.Sound.music(name); }
+
   function toast(msg) {
     const t = $('#toast');
     t.textContent = msg;
@@ -104,7 +108,7 @@
   function showScreen(id) {
     document.querySelectorAll('.screen').forEach((s) => s.classList.toggle('active', s.id === id));
     document.body.dataset.screen = id;
-    if (id !== 'screen-level') document.body.dataset.era = '';
+    if (id !== 'screen-level') { document.body.dataset.era = ''; bgm('menu'); }
     window.scrollTo(0, 0);
   }
 
@@ -190,6 +194,7 @@
   function walkTo(index) {
     const walker = $('#walker');
     walker.classList.add('walking');
+    sfx('walk');
     placeWalker(index, true);
     const slot = document.querySelector('.pc-slot[data-index="' + index + '"]');
     if (slot) slot.scrollIntoView({ behavior: 'smooth', inline: 'center', block: 'nearest' });
@@ -214,6 +219,8 @@
     ov.classList.remove('run');
     void ov.offsetWidth; // reinicia la animación CSS
     ov.classList.add('show', 'run');
+    bgm(null);
+    sfx('boot');
     ERA_TEXT[toCycle].forEach((t, i) => setTimeout(() => lines.appendChild(el('div', 'tr-line', '&gt; ' + t)), 350 + i * 650));
     let finished = false;
     const finish = () => {
@@ -245,6 +252,7 @@
     };
     document.body.dataset.era = lvl.cycle;
     showScreen('screen-level');
+    bgm(lvl.cycle);
     $('#lvl-avatar').innerHTML = spriteSVG(state.player.character, 3);
     $('#lvl-player').textContent = state.player.name;
     $('#lvl-cycle').textContent = CYCLES[lvl.cycle].medal + ' ' + CYCLES[lvl.cycle].name;
@@ -384,6 +392,7 @@
     const target = d[to];
     if (index === undefined || index < 0 || index > target.length) target.push(piece);
     else target.splice(index, 0, piece);
+    sfx('pick');
     renderDrag();
   }
 
@@ -446,6 +455,7 @@
       const base = currentLevel().boss ? SCORE.boss : SCORE.base;
       const pts = Math.max(SCORE.min, base - SCORE.hint * cur.hintsUsed - SCORE.error * cur.errors);
       cur.stepScores.push(pts);
+      sfx('success');
       currentStep().output.forEach((l) => printLine(l, /^✔/.test(l) ? 'ok' : 'out'));
       flashMonitor('success');
       setControlsEnabled(false);
@@ -461,6 +471,7 @@
     }
 
     printLine(res.terminal || res.message, res.type === 'near' && !res.costsLife ? 'warn' : 'err');
+    sfx(res.type === 'danger' ? 'danger' : res.costsLife ? 'error' : 'near');
     if (res.costsLife) {
       cur.lives -= 1;
       cur.errors += 1;
@@ -481,6 +492,7 @@
     printLine('# 💡 Pista ' + (cur.hintsUsed + 1) + ': ' + step.hints[cur.hintsUsed], 'hint');
     cur.hintsUsed += 1;
     cur.totalHints += 1;
+    sfx('hint');
     toast('Pista usada: −' + SCORE.hint + ' puntos en este paso');
     updateHintButton();
   }
@@ -506,6 +518,7 @@
     const cur = state.current;
     cur.solved = true;
     printLine('KERNEL PANIC: el técnico se quedó sin vidas.', 'err');
+    setTimeout(() => sfx('gameover'), 450);
     $('#cmd-input').value = '';
     setControlsEnabled(false);
     $('#btn-run').hidden = true;
@@ -533,6 +546,7 @@
     $('#lvl-total').textContent = totalScore();
 
     const isLast = cur.index === LEVELS.length - 1;
+    sfx(lvl.boss ? 'medal' : 'level');
     const starsHtml = '<div class="big-stars">' + '★'.repeat(stars) + '<span>' + '☆'.repeat(3 - stars) + '</span></div>';
     const summary = '<p class="result-line">Puntaje: <b>' + score + '</b> · Errores: ' + cur.totalErrors + ' · Pistas: ' + cur.totalHints + '</p>';
 
@@ -708,6 +722,7 @@
     const input = $('#cmd-input');
     input.addEventListener('keydown', (e) => {
       const cur = state.current;
+      if (e.key.length === 1 || e.key === 'Backspace') sfx('key');
       if (e.key === 'Enter') { e.preventDefault(); run(); }
       else if (e.key === 'ArrowUp' && cur.history.length) {
         e.preventDefault();
@@ -730,6 +745,24 @@
       if (document.body.dataset.screen === 'screen-map') placeWalker(Math.min(state.progress.unlocked, LEVELS.length - 1), false);
     });
     setupDropTargets();
+
+    /* Clic sonoro en botones (Ejecutar y Pista ya tienen su propio sonido) */
+    document.addEventListener('click', (e) => {
+      const b = e.target.closest('.btn, .char-option, .pc-slot');
+      if (b && !b.disabled && b.id !== 'btn-run' && b.id !== 'btn-hint') sfx('click');
+    });
+
+    /* Controles de sonido y música */
+    const paintSound = () => {
+      if (!window.Sound) { $('#sound-controls').hidden = true; return; }
+      $('#btn-sfx').classList.toggle('off', !window.Sound.prefs.sfx);
+      $('#btn-music').classList.toggle('off', !window.Sound.prefs.music);
+      $('#btn-sfx').title = window.Sound.prefs.sfx ? 'Silenciar efectos' : 'Activar efectos';
+      $('#btn-music').title = window.Sound.prefs.music ? 'Silenciar música' : 'Activar música';
+    };
+    $('#btn-sfx').addEventListener('click', () => { window.Sound.toggleSfx(); paintSound(); });
+    $('#btn-music').addEventListener('click', () => { window.Sound.toggleMusic(); paintSound(); });
+    paintSound();
   }
 
   /* -------------------------------- Inicio ------------------------------- */

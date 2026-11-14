@@ -18,9 +18,9 @@
 | Tipo de prueba | Casos | Aprobados | Fallidos |
 |---|---|---|---|
 | Unitarias del validador y de los datos (automáticas) | 149 | 149 | 0 |
-| Extremo a extremo en navegador real (automáticas) | 30 | 30 | 0 |
+| Extremo a extremo en navegador real (automáticas) | 31 | 31 | 0 |
 | Verificaciones adicionales (sección 7) | 12 | 12 | 0 |
-| **Total** | **191** | **191** | **0** |
+| **Total** | **192** | **192** | **0** |
 
 Las pruebas automáticas se pueden repetir en cualquier momento con los comandos de la sección 1. La prueba de extremo a extremo juega el juego completo y vuelve a generar las capturas de la carpeta `evidencias/`.
 
@@ -100,6 +100,7 @@ Las pruebas automáticas se pueden repetir en cualquier momento con los comandos
 | UI-27 | Guardado | Recargar la página | Progreso conservado y botón "Continuar" visible | `unlocked = 9`, botón visible | ✅ Aprobado |
 | UI-28 | Sin vidas | 3 comandos incorrectos en PC-04 | "Sin vidas": se muestra la solución con su explicación y botón Reintentar | Correcto ([captura](../evidencias/20_sin_vidas_solucion.png)) | ✅ Aprobado |
 | UI-29 | Reintentar | Clic en Reintentar nivel | Vuelven las 3 vidas | Correcto | ✅ Aprobado |
+| UI-31 | Sonido | Abrir el juego y alternar el botón 🎵 | Efectos y música activos; el botón apaga y vuelve a encender la música | Correcto | ✅ Aprobado |
 | UI-30 | Estabilidad | Partida completa | Ningún error de JavaScript en la consola | 0 errores | ✅ Aprobado |
 
 ## 7. Verificaciones adicionales
@@ -123,7 +124,7 @@ Estos casos se comprobaron en el navegador con un script de Playwright. M-01 y M
 
 ## 8. Conclusión
 
-Las 191 pruebas pasaron. Quedan verificadas:
+Las 192 pruebas pasaron. Quedan verificadas:
 
 - la **mecánica retro** (CRT + arrastrar y soltar con mouse o clic),
 - la **mecánica moderna** (escritura con historial y comandos internos),

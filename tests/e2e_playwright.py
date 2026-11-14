@@ -219,6 +219,11 @@ def main(chrome_path=None):
         page.click("#btn-retry")
         check("UI-29", "Reintentar restablece las 3 vidas", page.locator(".heart.lost").count() == 0)
 
+        st = page.evaluate("({sfx: Sound.prefs.sfx, music: Sound.prefs.music})")
+        page.click("#btn-music")
+        off = page.evaluate("Sound.prefs.music")
+        page.click("#btn-music")
+        check("UI-31", "Sonido 8 bits activo y botón de música alterna", st["sfx"] and st["music"] and off is False and page.evaluate("Sound.prefs.music"))
         check("UI-30", "Sin errores de JavaScript en consola", not errors, errors)
         browser.close()
 

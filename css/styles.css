@@ -124,7 +124,11 @@ kbd { background: #000; border: 1px solid var(--muted); padding: 0 6px; border-r
 /* ------------------------- 3. Pantalla de inicio ------------------------ */
 .start-card { max-width: 860px; margin: 30px auto 10px; }
 .start-logo { display: flex; gap: 26px; align-items: center; flex-wrap: wrap; }
-.logo-pc .pc-icon { transform: scale(2.1); transform-origin: left center; width: 130px; }
+.logo-pc { flex: 0 0 auto; }
+.logo-pc .pc-icon { width: 124px; }
+.logo-pc .pc-screen { width: 124px; height: 94px; border-width: 10px; padding: 12px; gap: 8px; border-radius: 12px; }
+.logo-pc .pc-screen i { height: 9px; }
+.logo-pc .pc-base { width: 64px; height: 16px; margin-top: 4px; }
 h1 {
   font-family: var(--pixel); font-size: 44px; line-height: 1.1; margin: 0;
   color: var(--yellow); text-shadow: 4px 4px 0 #b3541e, 8px 8px 0 #000;
@@ -387,6 +391,19 @@ h1 {
 .g-syn { color: var(--muted); font-size: 12px; }
 .g-card ul, .ops { padding-left: 18px; margin: 4px 0 0; font-size: 12px; }
 .g-card ul code, .ops code { color: var(--green); }
+
+/* -------------------------- Controles de sonido ------------------------- */
+.sound-controls { position: fixed; left: 14px; bottom: 14px; z-index: 260; display: flex; gap: 8px; }
+.sound-controls button {
+  width: 44px; height: 44px; font-size: 20px; cursor: pointer;
+  background: var(--panel); border: 3px solid var(--yellow); box-shadow: 3px 3px 0 #000; position: relative;
+}
+.sound-controls button:hover { filter: brightness(1.2); }
+.sound-controls button.off { opacity: .5; border-color: var(--muted); }
+.sound-controls button.off::after {
+  content: ''; position: absolute; left: 6px; right: 6px; top: 50%; height: 3px;
+  background: var(--red); transform: rotate(-45deg);
+}
 
 /* ------------------------------ Responsive ------------------------------ */
 @media (max-width: 960px) {

@@ -41,7 +41,8 @@ Después de cada intento, correcto o incorrecto, el **panel de explicación** mu
 - [x] Medallas de Bronce, Plata y Oro por ciclo completado
 - [x] Glosario de 16 comandos y 4 operadores, que marca los ya aprendidos
 - [x] Progreso guardado en el navegador (`localStorage`) con opción de continuar
-- [x] Pruebas automáticas: 149 del validador y 30 de extremo a extremo en navegador
+- [x] **Sonido y música 8 bits** generados con código: música distinta para el menú y cada época, efectos al acertar, fallar, usar pistas, arrastrar piezas o ganar medallas, y botones para silenciar
+- [x] Pruebas automáticas: 149 del validador y 31 de extremo a extremo en navegador
 
 ## 🛠️ Tecnologías
 
@@ -51,6 +52,7 @@ Después de cada intento, correcto o incorrecto, el **panel de explicación** mu
 | **CSS3** | Pixel art, monitor CRT (scanlines, viñeta, parpadeo), temas por época con variables CSS y animaciones |
 | **JavaScript (Vanilla, ES6)** | Motor del juego, validador de comandos y gestor de interfaz, sin frameworks |
 | **JSON / arreglo de objetos** | Definición de niveles, soluciones, pistas y explicaciones (`js/levels.js`) |
+| **Web Audio API** | Música y efectos de sonido 8 bits sintetizados en tiempo real, sin archivos de audio |
 | **localStorage** | Persistencia del progreso del jugador |
 | **Node.js** *(solo pruebas)* | Pruebas unitarias del validador |
 | **Playwright + Chromium** *(solo pruebas)* | Prueba de extremo a extremo y capturas de evidencia |
@@ -70,10 +72,11 @@ linux-rescue/
 ├── js/
 │   ├── levels.js              # Datos: ciclos, glosario y los 9 niveles (motor basado en datos)
 │   ├── validator.js           # Validador de comandos (normaliza, compara y diagnostica)
+│   ├── audio.js               # Música y efectos 8 bits (Web Audio API)
 │   └── app.js                 # Motor del juego y gestor de interfaz dinámica
 ├── tests/
 │   ├── validator.test.js      # 149 pruebas automáticas del validador (Node.js)
-│   └── e2e_playwright.py      # 30 pruebas en navegador real + capturas
+│   └── e2e_playwright.py      # 31 pruebas en navegador real + capturas
 ├── docs/
 │   ├── DOCUMENTACION_TECNICA.md
 │   ├── PRUEBAS_FUNCIONAMIENTO.md
