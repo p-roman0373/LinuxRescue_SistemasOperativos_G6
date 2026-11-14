@@ -146,11 +146,7 @@ python tests/e2e_playwright.py               # juega el juego completo y genera 
 
 > Las capturas se generaron automáticamente con la prueba de extremo a extremo (`tests/e2e_playwright.py`).
 
-
-
-
-
-
+🎬 [Ver video del juego](https://youtu.be/AapnwMweoTw)  
 
 
 ### Inicio y pasillo
