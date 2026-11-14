@@ -9,6 +9,8 @@
 **Estado:** Fase II, prototipo jugable completo (9 retos en 3 ciclos).
 **Modalidad de entrega:** Opción A, repositorio GitHub.
 
+### 🎮 [Jugar en línea](https://p-roman0373.github.io/LinuxRescue_SistemasOperativos_G6/) · 📂 [Repositorio](https://github.com/p-roman0373/LinuxRescue_SistemasOperativos_G6)
+
 ---
 
 ## 📌 Descripción
@@ -95,8 +97,8 @@ Pasos para preparar el entorno:
 
 ```bash
 # 1. Clonar el repositorio
-git clone https://github.com/<usuario>/<repositorio>.git
-cd <repositorio>
+git clone https://github.com/p-roman0373/LinuxRescue_SistemasOperativos_G6.git
+cd LinuxRescue_SistemasOperativos_G6
 
 # 2. (Opcional) Abrir en VS Code
 code .
@@ -115,7 +117,7 @@ python3 -m http.server 8000      # en Windows: python -m http.server 8000
 # abrir http://localhost:8000
 ```
 
-**Opción 4, en línea con GitHub Pages:** en el repositorio ir a *Settings → Pages → Branch: `main` / root → Save*. En un par de minutos el juego queda publicado en `https://<usuario>.github.io/<repositorio>/`.
+**Opción 4, en línea con GitHub Pages:** en el repositorio ir a *Settings → Pages → Branch: `main` / root → Save*. El juego está publicado en **https://p-roman0373.github.io/LinuxRescue_SistemasOperativos_G6/**
 
 ### Cómo jugar
 
