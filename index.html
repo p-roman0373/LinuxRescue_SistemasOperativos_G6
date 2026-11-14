@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Linux Rescue: videojuego web educativo para aprender comandos de la terminal de Linux reparando computadores.">
+  <title>Linux Rescue · Repara computadores con comandos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&family=VT323&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="stylesheet" href="css/eras.css">
+</head>
+<body data-screen="screen-start" data-era="">
+
+<div id="app">
+
+  <!-- ============================ PANTALLA INICIO ============================ -->
+  <section id="screen-start" class="screen active" aria-labelledby="game-title">
+    <div class="start-card pixel-box">
+      <div class="start-logo">
+        <div id="start-logo-pc" class="logo-pc"></div>
+        <div>
+          <h1 id="game-title">LINUX<br>RESCUE</h1>
+          <p class="tagline">El juego de reparar computadores con comandos</p>
+          <div class="tags"><span>Juego web 2D</span><span>Pixel art</span><span>Sistemas Operativos</span></div>
+        </div>
+      </div>
+
+      <div class="start-form">
+        <label for="player-name" class="label">1. Nombre de tu técnico</label>
+        <input id="player-name" type="text" maxlength="16" placeholder="Ej: Paula" autocomplete="off">
+
+        <span class="label">2. Elige tu personaje</span>
+        <div class="char-select">
+          <button type="button" class="char-option selected" data-char="nino"><div class="char-sprite"></div><span>Técnico</span></button>
+          <button type="button" class="char-option" data-char="nina"><div class="char-sprite"></div><span>Técnica</span></button>
+        </div>
+
+        <div class="start-actions">
+          <button id="btn-new" type="button" class="btn btn-primary">▶ Nueva partida</button>
+          <button id="btn-continue" type="button" class="btn btn-ghost" hidden>⟲ Continuar</button>
+          <button type="button" class="btn btn-ghost" data-action="glossary">📖 Glosario</button>
+        </div>
+      </div>
+
+      <div class="cycles-preview">
+        <div class="cp cp-bronce"><b>🥉 Bronce</b><span>Monitor viejito · arrastra bloques</span></div>
+        <div class="cp cp-plata"><b>🥈 Plata</b><span>Monitor moderno · escribe comandos</span></div>
+        <div class="cp cp-oro"><b>🥇 Oro</b><span>PC gamer · menos ayudas</span></div>
+      </div>
+    </div>
+    <footer class="credits">Universidad Manuel Beltrán · Sistemas Operativos · Grupo 6 — Paula Román · Hayder Carreño · David Bonilla</footer>
+  </section>
+
+  <!-- ============================ PANTALLA PASILLO =========================== -->
+  <section id="screen-map" class="screen" aria-label="Pasillo de computadores">
+    <header class="hud pixel-box">
+      <div id="map-player" class="hud-player"></div>
+      <div class="hud-item">Puntaje total <b id="map-score">0</b></div>
+      <div class="hud-item">Medallas <span id="map-medals"></span></div>
+      <div class="hud-actions">
+        <button type="button" class="btn btn-small" data-action="glossary">📖 Glosario</button>
+        <button id="btn-map-home" type="button" class="btn btn-small btn-ghost">⌂ Inicio</button>
+      </div>
+    </header>
+
+    <div class="map-wrap pixel-box">
+      <h2 class="section-title">El pasillo de los computadores averiados</h2>
+      <p class="muted">Camina hasta un computador desbloqueado y haz clic para repararlo. Cada ciclo termina con un <b>jefe</b>.</p>
+      <div class="corridor-scroll">
+        <div id="corridor" class="corridor"></div>
+        <div id="walker" class="walker"></div>
+        <div class="floor"></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================= PANTALLA NIVEL ============================ -->
+  <section id="screen-level" class="screen" aria-label="Nivel">
+    <header class="hud level-hud">
+      <div class="hud-player"><span id="lvl-avatar"></span><span id="lvl-player"></span></div>
+      <div class="hud-item"><span id="lvl-cycle" class="badge"></span></div>
+      <div class="hud-item"><span id="lvl-mode" class="badge badge-mode"></span></div>
+      <div class="hud-item">Vidas <span id="lvl-lives" class="lives"></span></div>
+      <div class="hud-item">Nivel <b id="lvl-score">0</b></div>
+      <div class="hud-item">Total <b id="lvl-total">0</b></div>
+      <div class="hud-actions">
+        <button type="button" class="btn btn-small" data-action="glossary">📖</button>
+        <button id="btn-lvl-map" type="button" class="btn btn-small btn-ghost">◀ Pasillo</button>
+      </div>
+    </header>
+
+    <div class="level-grid">
+      <div class="stage">
+        <h2 id="lvl-title" class="lvl-title"></h2>
+
+        <div class="fault-card">
+          <span class="fault-label">⚠ FALLA</span>
+          <p id="fault-desc"></p>
+        </div>
+
+        <div class="mission">
+          <div id="step-indicator" class="step-indicator" hidden></div>
+          <p id="mission-text"></p>
+        </div>
+
+        <!-- El "monitor" cambia de aspecto según la época (data-era en <body>) -->
+        <div id="monitor" class="monitor">
+          <div class="monitor-case">
+            <div class="monitor-titlebar">
+              <span class="dots"><i></i><i></i><i></i></span>
+              <span id="term-title">terminal</span>
+            </div>
+            <div class="screen-glass">
+              <div id="terminal" class="terminal" role="log" aria-live="polite">
+                <div id="term-output"></div>
+                <div id="type-row" class="term-input-row">
+                  <span class="prompt">tecnico@rescue:~$</span>
+                  <input id="cmd-input" type="text" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Escribe un comando">
+                </div>
+              </div>
+            </div>
+            <div class="monitor-brand"><span class="led"></span><span class="brand-name"></span></div>
+          </div>
+          <div class="monitor-neck"></div>
+          <div class="monitor-foot"></div>
+        </div>
+
+        <!-- Modo guiado: arrastrar y soltar -->
+        <div id="drag-area" class="drag-area">
+          <div class="cmdline">
+            <span class="prompt">tecnico@rescue:~$</span>
+            <div id="drop-zone" class="drop-zone" aria-label="Línea de comandos"></div>
+          </div>
+          <div class="preview">Comando armado: <code id="cmd-preview"></code></div>
+          <div class="bank-label">Piezas disponibles <small>(arrastra o haz clic · sobran algunas)</small></div>
+          <div id="piece-bank" class="piece-bank"></div>
+        </div>
+
+        <div class="actions">
+          <button id="btn-run" type="button" class="btn btn-primary">▶ Ejecutar</button>
+          <button id="btn-clear" type="button" class="btn btn-ghost">⟲ Limpiar</button>
+          <button id="btn-hint" type="button" class="btn btn-hint">💡 Pista (<span id="hints-left">2</span>)</button>
+          <button id="btn-next" type="button" class="btn btn-primary" hidden>Continuar ▶</button>
+          <button id="btn-retry" type="button" class="btn btn-danger" hidden>⟲ Reintentar nivel</button>
+        </div>
+      </div>
+
+      <aside id="explain-panel" class="explain-panel" aria-live="polite"></aside>
+    </div>
+  </section>
+</div>
+
+<!-- ========================= TRANSICIÓN ENTRE ÉPOCAS ========================= -->
+<div id="overlay-transition" class="overlay-transition" aria-live="assertive">
+  <div class="tr-box">
+    <h2 id="tr-title">¡ACTUALIZACIÓN DE HARDWARE!</h2>
+    <div class="tr-machines">
+      <div id="tr-from" class="tr-machine from"></div>
+      <div class="tr-arrow">➜</div>
+      <div id="tr-to" class="tr-machine to"></div>
+    </div>
+    <div class="tr-bar"><i></i></div>
+    <div id="tr-lines" class="tr-lines"></div>
+    <small class="muted">(clic para saltar)</small>
+  </div>
+</div>
+
+<!-- ================================== MODAL ================================== -->
+<div id="modal" class="modal" role="dialog" aria-modal="true">
+  <div class="modal-box pixel-box">
+    <div id="modal-content"></div>
+    <div id="modal-actions" class="modal-actions"></div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status"></div>
+
+<script src="js/levels.js"></script>
+<script src="js/validator.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
