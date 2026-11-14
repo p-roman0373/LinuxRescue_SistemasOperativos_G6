@@ -1,0 +1,152 @@
+[
+  {
+    "id": "UI-01",
+    "caso": "Carga la pantalla de inicio",
+    "aprobado": true
+  },
+  {
+    "id": "UI-02",
+    "caso": "Exige nombre del técnico",
+    "aprobado": true
+  },
+  {
+    "id": "UI-03",
+    "caso": "Muestra el pasillo con 9 computadores",
+    "aprobado": true
+  },
+  {
+    "id": "UI-04",
+    "caso": "Solo el primer computador está desbloqueado",
+    "aprobado": true
+  },
+  {
+    "id": "UI-05",
+    "caso": "Animación de arranque al entrar al ciclo Bronce",
+    "aprobado": true
+  },
+  {
+    "id": "UI-06",
+    "caso": "Época Bronce aplicada (monitor CRT)",
+    "aprobado": true
+  },
+  {
+    "id": "UI-07",
+    "caso": "Modo guiado: zona de arrastre visible e input oculto",
+    "aprobado": true
+  },
+  {
+    "id": "UI-08",
+    "caso": "Arrastrar y soltar mueve piezas a la línea de comandos",
+    "aprobado": true
+  },
+  {
+    "id": "UI-09",
+    "caso": "Clic en una pieza la devuelve al banco",
+    "aprobado": true
+  },
+  {
+    "id": "UI-10",
+    "caso": "Error resta una vida y explica el comando",
+    "aprobado": true
+  },
+  {
+    "id": "UI-11",
+    "caso": "La pista se muestra en la terminal y descuenta el contador",
+    "aprobado": true
+  },
+  {
+    "id": "UI-12",
+    "caso": "Acierto: panel con explicación y desglose",
+    "aprobado": true
+  },
+  {
+    "id": "UI-13",
+    "caso": "Modal de nivel completado con estrellas",
+    "aprobado": true
+  },
+  {
+    "id": "UI-14",
+    "caso": "Jefe con varias fallas consecutivas (indicador 1 de 3)",
+    "aprobado": true
+  },
+  {
+    "id": "UI-15",
+    "caso": "Al vencer al jefe se gana la medalla Bronce",
+    "aprobado": true
+  },
+  {
+    "id": "UI-16",
+    "caso": "Transición automática de época al subir de ciclo",
+    "aprobado": true
+  },
+  {
+    "id": "UI-17",
+    "caso": "Época Plata aplicada (terminal moderna)",
+    "aprobado": true
+  },
+  {
+    "id": "UI-18",
+    "caso": "Modo experto: input visible y arrastre desactivado",
+    "aprobado": true
+  },
+  {
+    "id": "UI-19",
+    "caso": "Comando inexistente: 'orden no encontrada' + sugerencia",
+    "aprobado": true
+  },
+  {
+    "id": "UI-20",
+    "caso": "Historial con flecha arriba",
+    "aprobado": true
+  },
+  {
+    "id": "UI-21",
+    "caso": "Época Oro aplicada (PC gamer)",
+    "aprobado": true
+  },
+  {
+    "id": "UI-22",
+    "caso": "Ciclo Oro tiene solo 1 pista por falla",
+    "aprobado": true
+  },
+  {
+    "id": "UI-23",
+    "caso": "Comando peligroso bloqueado con advertencia",
+    "aprobado": true
+  },
+  {
+    "id": "UI-24",
+    "caso": "Pantalla final con las 3 medallas",
+    "aprobado": true
+  },
+  {
+    "id": "UI-25",
+    "caso": "Glosario marca los comandos aprendidos",
+    "aprobado": true
+  },
+  {
+    "id": "UI-26",
+    "caso": "Pasillo con los 9 computadores reparados",
+    "aprobado": true
+  },
+  {
+    "id": "UI-27",
+    "caso": "El progreso se guarda y se puede continuar",
+    "aprobado": true
+  },
+  {
+    "id": "UI-28",
+    "caso": "Sin vidas: revela la solución y permite reintentar",
+    "aprobado": true
+  },
+  {
+    "id": "UI-29",
+    "caso": "Reintentar restablece las 3 vidas",
+    "aprobado": true
+  },
+  {
+    "id": "UI-30",
+    "caso": "Sin errores de JavaScript en consola",
+    "aprobado": true
+  }
+]
